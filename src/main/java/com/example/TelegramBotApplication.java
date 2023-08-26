@@ -1,6 +1,4 @@
-package com.example.telegram_bot;
-import com.example.telegram_bot.main.Main;
-import com.example.telegram_bot.service.AdsService;
+package com.example;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;

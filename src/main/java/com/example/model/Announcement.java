@@ -1,4 +1,4 @@
-package com.example.telegram_bot.model;
+package com.example.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

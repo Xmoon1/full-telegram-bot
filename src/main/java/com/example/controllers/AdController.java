@@ -1,7 +1,7 @@
-package com.example.telegram_bot.controllers;
-import com.example.telegram_bot.main.Main;
-import com.example.telegram_bot.model.Announcement;
-import com.example.telegram_bot.service.AdsService;
+package com.example.controllers;
+import com.example.model.Announcement;
+import com.example.service.AdsService;
+import com.example.main.Main;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/ads")
 public class AdController {
     private final AdsService service;
+    private final Main main;
 
     @GetMapping
     public List<Announcement> findAll(){
@@ -30,8 +31,8 @@ public class AdController {
                 .body("Ad is successfully added to database!");
     }
     @GetMapping("/send_to_groups")
-    public void doIT() throws IOException, InterruptedException {
-        Main main = new Main();
+    public void sendToGroups() throws IOException, InterruptedException {
+
         List<String> chatID = new ArrayList<>();
         chatID.add("-994628304");
         chatID.add("-820141740");

@@ -1,8 +1,9 @@
-package com.example.telegram_bot.config;
+package com.example.config;
 
 
-import com.example.telegram_bot.service.TelegramBot;
+import com.example.service.TelegramBot;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class BotInitializer {
 
     private final TelegramBot bot;
@@ -22,7 +24,8 @@ public class BotInitializer {
         try{
             telegramBotsApi.registerBot(bot);
         }catch (TelegramApiException e){
-            throw new RuntimeException();
+            System.out.println("Please, connect to internet...");
+            log.error("Please, connect to internet");
         }
     }
 

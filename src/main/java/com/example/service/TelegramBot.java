@@ -1,6 +1,6 @@
-package com.example.telegram_bot.service;
+package com.example.service;
 
-import com.example.telegram_bot.config.BotConfig;
+import com.example.config.BotConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -44,7 +44,9 @@ public class TelegramBot extends TelegramLongPollingBot {
                         "Hello, "+update.getMessage().getChat().getFirstName()+" 🙃");
                 case "POST" -> {
                     try {
-                        sendRequest();
+                        for (int i = 0; i < 2; i++) {
+                            sendRequest();
+                        }
                     } catch (IOException | InterruptedException e) {
                         throw new RuntimeException(e);
                     }

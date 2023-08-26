@@ -1,13 +1,12 @@
-package com.example.telegram_bot.service;
+package com.example.service;
 
 
-import com.example.telegram_bot.model.Announcement;
-import com.example.telegram_bot.repository.AdsRepository;
+import com.example.model.Announcement;
+import com.example.repository.AdsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.beans.Transient;
 import java.util.List;
 import java.util.Optional;
 

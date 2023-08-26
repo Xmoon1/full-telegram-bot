@@ -1,7 +1,7 @@
-package com.example.telegram_bot.repository;
+package com.example.repository;
 
 
-import com.example.telegram_bot.model.Announcement;
+import com.example.model.Announcement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
