@@ -37,7 +37,7 @@ public class Main {
         for (String msg : messages
         ) {
 
-            Thread.sleep(1000);
+            Thread.sleep(4000);
 
             for (int i = 0; i < chatID.size(); i++) {
                 String url = "https://api.telegram.org/bot" + config.getToken() + "/sendMessage?chat_id=" + chatID.get(i) + "&text=" + msg.replaceAll("\\s+", "%20");
