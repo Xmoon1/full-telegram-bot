@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.config.BotConfig;
+import com.example.main.Main;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -19,6 +20,7 @@ import java.net.http.HttpResponse;
 @RequiredArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
     private final BotConfig botConfig;
+    private final Main main;
 
     /*
     Создать и получить токен бота нужно в @BotFather в Telegram.
@@ -45,7 +47,14 @@ public class TelegramBot extends TelegramLongPollingBot {
                 case "POST" -> {
                     try {
                         for (int i = 0; i < 2; i++) {
-                            sendRequest();
+                            HttpClient client = HttpClient.newHttpClient();
+
+                            HttpRequest request = HttpRequest.newBuilder()
+                                    .uri(URI.create("https://full-telegram-bot-production.up.railway.app/ads/send_to_groups"))
+                                    .build();
+                            HttpResponse<String> response = client.send(request,
+                                    HttpResponse.BodyHandlers.ofString());
+                            System.out.println(response.body());
                         }
                     } catch (IOException | InterruptedException e) {
                         throw new RuntimeException(e);
@@ -70,16 +79,16 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    public void sendRequest() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://full-telegram-bot-production.up.railway.app/ads/send_to_groups"))
-                .build();
-        HttpResponse<String> response = client.send(request,
-                HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-
-    }
+//    public void sendRequest() throws IOException, InterruptedException {
+//        HttpClient client = HttpClient.newHttpClient();
+//
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create("https://full-telegram-bot-production.up.railway.app/ads/send_to_groups"))
+//                .build();
+//        HttpResponse<String> response = client.send(request,
+//                HttpResponse.BodyHandlers.ofString());
+//        System.out.println(response.body());
+//
+//    }
 }
 
