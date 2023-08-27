@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ads")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AdController {
     private final AdsService service;
     private final Main main;
