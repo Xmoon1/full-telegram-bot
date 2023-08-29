@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.config.BotConfig;
 import com.example.main.Main;
+import com.example.model.Announcement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -21,10 +22,11 @@ import java.net.http.HttpResponse;
 public class TelegramBot extends TelegramLongPollingBot {
     private final BotConfig botConfig;
     private final Main main;
+    private final AdsService service;
 
     /*
     Создать и получить токен бота нужно в @BotFather в Telegram.
-     */
+    */
     @Override
     public String getBotUsername() {
         return botConfig.getBotName();
@@ -44,7 +46,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 case "/start" -> sendMessage(
                         chatId,
                         "Hello, "+update.getMessage().getChat().getFirstName()+" 🙃");
-                case "POST" -> {
+                case "Пост" -> {
                     try {
                         for (int i = 0; i < 2; i++) {
                             HttpClient client = HttpClient.newHttpClient();
@@ -59,7 +61,14 @@ public class TelegramBot extends TelegramLongPollingBot {
                     } catch (IOException | InterruptedException e) {
                         throw new RuntimeException(e);
                     }
+                } case "Все" ->{
+                    for (Announcement ad: service.findAllAds()
+                         ) {
+                        sendMessage(chatId, ad.toString());
+                    }
+
                 }
+
                 default -> sendMessage(
                         chatId,
                         "Такой команды не существует."

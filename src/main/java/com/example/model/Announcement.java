@@ -26,4 +26,9 @@ public class Announcement {
     @Column(name = "contact")
     private String contact;   // Contact number of the ad creator
 
+    @Override
+    public String toString() {
+        return "Компания: " + companyName+"\n"+"Текст: " + body + '\n' +
+                "Контакт: " + contact;
+    }
 }
