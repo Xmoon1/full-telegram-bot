@@ -28,7 +28,7 @@ public class Announcement {
 
     @Override
     public String toString() {
-        return "Компания: " + companyName+"\n"+"Текст: " + body + '\n' +
-                "Контакт: " + contact;
+        return "Компания: " + companyName+" ✅\n"+"%0AТекст: " + body + '\n' +
+                "%0AКонтакт: " + contact;
     }
 }
