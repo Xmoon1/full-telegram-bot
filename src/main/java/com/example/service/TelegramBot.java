@@ -21,7 +21,6 @@ import java.net.http.HttpResponse;
 @RequiredArgsConstructor
 public class TelegramBot extends TelegramLongPollingBot {
     private final BotConfig botConfig;
-    private final Main main;
     private final AdsService service;
 
     /*
@@ -48,7 +47,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         "Hello, "+update.getMessage().getChat().getFirstName()+" 🙃");
                 case "Пост" -> {
                     try {
-                        for (int i = 0; i < 2; i++) {
+                        for (int i = 0; i < 1; i++) {
                             HttpClient client = HttpClient.newHttpClient();
 
                             HttpRequest request = HttpRequest.newBuilder()
@@ -58,6 +57,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                                     HttpResponse.BodyHandlers.ofString());
                             System.out.println(response.body());
                         }
+                        sendMessage(chatId, "Все вакансии успешно отправлены во все группы!");
                     } catch (IOException | InterruptedException e) {
                         throw new RuntimeException(e);
                     }
