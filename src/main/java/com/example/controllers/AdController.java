@@ -38,12 +38,12 @@ public class AdController {
         chatID.add("-994628304");
         chatID.add("-820141740");
 
-        List<String> a = new ArrayList<>();
+        List<String> messages = new ArrayList<>();
         for (Announcement msg: service.findAllAds()
         ) {
-            a.add(msg.getBody());
+            messages.add(msg.getCompanyName() + " " + msg.getBody() + " " + msg.getContact());
         }
-        main.sendRequest(a, chatID);
+        main.sendRequest(messages, chatID);
     }
 
     @DeleteMapping("/{id}/delete")
