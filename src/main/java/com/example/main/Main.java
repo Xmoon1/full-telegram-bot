@@ -30,17 +30,30 @@ public class Main {
 //        Main main = new Main();
 //        main.sendRequest(messages, chatID);
 
+        String a = "Компания: Макдональдс\n" +
+                "Текст: Мы работаем на рынке уже больше 30 лет!\n" +
+                "\n" +
+                "Тут будет описание...\n" +
+                "\n" +
+                "\n" +
+                "Остальные фичи\n" +
+                "З/П: 50,000 руб.\n" +
+                "Контакт: job@mcdonalds.com";
+
+
+        System.out.println(a.replaceAll("\\n", "%0A"));
+
     }
 
     public void sendRequest(List<String> messages, List<String> chatID) throws InterruptedException, IOException {
         HttpClient client = HttpClient.newHttpClient();
         for (String msg : messages
         ) {
-
+            String formattedString = msg.replaceAll("\\n", "%0A");
             Thread.sleep(4000);
 
             for (int i = 0; i < chatID.size(); i++) {
-                String url = "https://api.telegram.org/bot" + config.getToken() + "/sendMessage?chat_id=" + chatID.get(i) + "&text=" + msg.replaceAll(" ", "%20");
+                String url = "https://api.telegram.org/bot" + config.getToken() + "/sendMessage?chat_id=" + chatID.get(i) + "&text=" + formattedString.replaceAll("\\s", "%20");
                 System.out.println(url);
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(url))

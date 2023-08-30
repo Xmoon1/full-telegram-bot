@@ -41,7 +41,7 @@ public class AdController {
         List<String> messages = new ArrayList<>();
         for (Announcement msg: service.findAllAds()
         ) {
-            messages.add(msg.getCompanyName() + " " + msg.getBody() + " " + msg.getContact());
+            messages.add(msg.toString());
         }
         main.sendRequest(messages, chatID);
     }

@@ -51,6 +51,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                             HttpClient client = HttpClient.newHttpClient();
 
                             HttpRequest request = HttpRequest.newBuilder()
+//                                    .uri(URI.create("http://localhost:8080/ads/send_to_groups"))
                                     .uri(URI.create("https://full-telegram-bot-production.up.railway.app/ads/send_to_groups"))
                                     .build();
                             HttpResponse<String> response = client.send(request,
