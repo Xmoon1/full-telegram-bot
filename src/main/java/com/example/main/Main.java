@@ -1,7 +1,9 @@
 package com.example.main;
 
 import com.example.config.BotConfig;
+import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.mapping.Array;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -9,6 +11,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -30,19 +34,18 @@ public class Main {
 //        Main main = new Main();
 //        main.sendRequest(messages, chatID);
 
-        String a = "Компания: Макдональдс\n" +
-                "Текст: Мы работаем на рынке уже больше 30 лет!\n" +
-                "\n" +
-                "Тут будет описание...\n" +
-                "\n" +
-                "\n" +
-                "Остальные фичи\n" +
-                "З/П: 50,000 руб.\n" +
-                "Контакт: job@mcdonalds.com";
+        List<Integer> arrayList = Arrays.asList(1, 2, 3, 4, 5);
 
 
-        System.out.println(a.replaceAll("\\n", "%0A"));
+        for (Integer numb: reverseList(arrayList)
+             ) {
+            System.out.println(numb);
+        }
 
+    }
+
+    public static<T> List<T> reverseList(List<T> list) {
+        return new ArrayList<>(Lists.reverse(list));
     }
 
     public void sendRequest(List<String> messages, List<String> chatID) throws InterruptedException, IOException {

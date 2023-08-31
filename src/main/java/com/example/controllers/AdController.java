@@ -2,6 +2,7 @@ package com.example.controllers;
 import com.example.model.Announcement;
 import com.example.service.AdsService;
 import com.example.main.Main;
+import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,13 @@ public class AdController {
 
     @GetMapping
     public List<Announcement> findAll(){
-        return service.findAllAds();
+        List<Announcement> announcements = service.findAllAds();
+
+        return reverseList(announcements);
+    }
+
+    public static<T> List<T> reverseList(List<T> list) {
+        return new ArrayList<>(Lists.reverse(list));
     }
 
 
