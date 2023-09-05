@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.config.BotConfig;
-import com.example.main.Main;
 import com.example.model.Announcement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -65,7 +64,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 } case "Все" ->{
                     for (Announcement ad: service.findAllAds()
                          ) {
-                        sendMessage(chatId, ad.toString());
+                        sendMessage(chatId, ad.toStringForUsers());
                     }
 
                 }

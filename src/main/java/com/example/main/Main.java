@@ -3,7 +3,6 @@ package com.example.main;
 import com.example.config.BotConfig;
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.mapping.Array;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
